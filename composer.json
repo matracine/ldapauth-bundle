@@ -12,5 +12,10 @@
             "name": "Matthieu Racine",
             "email": "matthieu.racine@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "mracine\\LdapAuthBundle\\": "src/"
+        }
+    }    
 }
