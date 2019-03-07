@@ -1,0 +1,16 @@
+{
+    "name": "mracine/ldapauth-bundle",
+    "description": "Ldap authentication bundle",
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/security": "^4.0",
+        "symfony/ldap": "^4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthieu Racine",
+            "email": "matthieu.racine@gmail.com"
+        }
+    ]
+}
