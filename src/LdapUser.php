@@ -5,15 +5,42 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Ldap\Entry;
 
+/**
+ * Represents a user extracted from Ldap server
+ *
+ * @author Matthieu Racine <matthieu.racine@gmail.com>
+ */
 
 class LdapUser implements UserInterface, EquatableInterface
 {
+    /**
+     * @var string short user name
+     */ 
     private $username;
+
+    /**
+     * @var string clear texte user password
+     */
     private $password;
+
+    /**
+     * @var string[] user's roles list
+     */
     private $roles;
 
+    /**
+     * @var Entry the ldap user's entry (record) received from the Ldap server after authentication
+     */
     protected $ldapEntry;
 
+    /**
+     * Contrutctor
+     *
+     * @param string $username the user's username
+     * @param string $password the user's password
+     * @param Entry $entry the user's associated ldap entry (contains user's DN)
+     * @param string[] $roles the user roles
+     */
     public function __construct(
         ?string $username, 
         ?string $password, 
@@ -30,6 +57,12 @@ class LdapUser implements UserInterface, EquatableInterface
         $this->roles = $roles;
         $this->ldapEntry = $ldapEntry;
     }
+
+    /**
+     * Convert LdapUser to human readable string value
+     *
+     * @return string the user name
+     */ 
 
     public function __toString()
     {
@@ -74,11 +107,24 @@ class LdapUser implements UserInterface, EquatableInterface
     {
     }
 
+    /**
+     * retreive the ldap entry of the user
+     * 
+     * @return Entry the Ldap entry
+     */
     public function getLdapEntry()
     {
         return $this->ldapEntry;   
     }
     
+    /**
+     * retreive the Ldap Distinguished Name (DN) of the user
+     *
+     * DN is a unique key for the Ldap server that identifies the user entry
+     * DN has the form : "uid=username,ou=myservice,dc=myorganisation,dc=fr"
+     *
+     * @return string the DN
+     */   
     public function getDn()
     {
         return $this->ldapEntry->getDn();

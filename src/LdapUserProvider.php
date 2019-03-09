@@ -8,6 +8,11 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 use mracine\LdapAuthBundle\LdapUser;
 
+/**
+ * Represents a user extracted from Ldap server
+ *
+ * @author Matthieu Racine <matthieu.racine@gmail.com>
+ */
 class LdapUserProvider extends SymfonyLdapUserProvider
 {
 
